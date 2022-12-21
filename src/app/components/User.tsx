@@ -12,6 +12,7 @@ export const User = (props: { username: string; }): JSX.Element => {
     //     GetUserDetails(username).then(data => setResponse(data.data))
     //     .catch(()=>{navigate(ERRORURL, {state: { username: username }})});
     // }
+    
     let { username } = useParams();
     const data: UserType = useFetch(username? username:props.username);
 

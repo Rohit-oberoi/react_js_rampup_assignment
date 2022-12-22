@@ -13,9 +13,11 @@
     "@types/react-router-dom": "^5.3.3",
     "axios": "^1.2.1",
     "bootstrap": "^5.2.3",
+    "mdb-react-ui-kit": "^5.1.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.5.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.4",
     "web-vitals": "^2.1.4"
@@ -44,7 +46,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "react-router-dom": "^6.5.0"
-  }
+  "lint:fix": "eslint . --ext .ts,.tsx --fix"
 }

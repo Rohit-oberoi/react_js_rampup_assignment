@@ -1,16 +1,18 @@
 import axios from 'axios';
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { useNavigate } from 'react-router-dom';
-import { DEMOUSERDATA, ERRORURL, FETCHUSERURL } from '../Constants';
+import { DEMO_USER_DATA, FETCH_USER_URL } from '../constants/Constants';
+import { ROUTES } from '../constants/routeConstants'; 
 import { UserType } from '../interfaces/UserType';
 
-const useFetch = (username: string): UserType => {
-    const [data, setdata] = useState(DEMOUSERDATA);
+const useFetch = (username: string, setLoader: { (value: SetStateAction<boolean>): void; (arg0: boolean): void; }): UserType => {
+    const [data, setdata] = useState(DEMO_USER_DATA);
     const navigate = useNavigate();
 
     useEffect(() => {
-        axios.get(`${FETCHUSERURL}${username}`).then(data => setdata(data.data))
-        .catch(()=>{navigate(ERRORURL, {state: { username: username }})});
+        setLoader(true);
+        axios.get(`${FETCH_USER_URL}${username}`).then((data) => {setdata(data.data); setLoader(false);})
+        .catch(()=>{navigate(ROUTES.USER_NOT_FOUND, {state: { username: username }})});
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [username]);
 

@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { ROUTES } from "../constants/routeConstants";
 
 export default function Header(): JSX.Element {
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
   const submit = (event: { preventDefault: () => void; }) => {
     if (!username) {
+      event.preventDefault();
       alert("Please add username");
     }
     else {
       event.preventDefault();
-      navigate("/", {state: { username: username }});
+      navigate(`${username}`);
       setUsername("");
     }
   }
@@ -18,14 +20,14 @@ export default function Header(): JSX.Element {
   return (
       <nav className="navbar navbar-expand-lg navbar-light bg-info">
       <div className="container-fluid">
-        <Link className="navbar-brand" to="/profile">My Profile</Link>
+        <Link className="navbar-brand" to={ROUTES.PROFILE}>My Profile</Link>
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <Link className="nav-link active" aria-current="page" to="/">Home</Link>
+              <Link className="nav-link active" aria-current="page" to={ROUTES.HOME}>Home</Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" to="/about">About</Link>
+              <Link className="nav-link" to={ROUTES.ABOUT}>About</Link>
             </li>  
           </ul>
           <form className="d-flex" onSubmit={submit}>

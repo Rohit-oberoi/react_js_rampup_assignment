@@ -1,8 +1,8 @@
 import axios from 'axios';
-import { FETCHUSERURL } from '../Constants';
+import { FETCH_USER_URL } from '../constants/Constants';
 
 const GetUserDetails = (username: string) => {
-    return axios.get(`${FETCHUSERURL}${username}`);
+    return axios.get(`${FETCH_USER_URL}${username}`);
 }
 
 export default GetUserDetails
